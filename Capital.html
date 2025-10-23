@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Country Capital Search</title>
+    <link rel="stylesheet" href="CapitalStyle.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>Search for a capital city of a Country</h1>
+
+        <!-- Target the hidden iframe so the main page doesn't reload -->
+        <form id="search-form" class="search-box" action="search.php" method="post" target="resultFrame"
+            autocomplete="off">
+            <input type="text" placeholder="Type a Country..." name="query" required />
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="results" aria-live="polite"></div>
+    </div>
+
+   
+    <iframe name="resultFrame" id="resultFrame" style="display:none;" aria-hidden="true"></iframe>
+
+    <script>
+        const resultsEl = document.getElementById('results');
+        const form = document.getElementById('search-form');
+
+        form.addEventListener('submit', () => {
+            resultsEl.innerHTML = '<div class="loading">Searching…</div>';
+        });
+
+       
+        window.addEventListener('message', (event) => {
+
+            const data = event.data;
+            if (!data || typeof data !== 'object') return;
+
+            if (!data.ok) {
+                resultsEl.innerHTML = `<div class="error">${data.message || 'Something went wrong.'}</div>`;
+                return;
+            }
+
+            // Render results
+            if (!data.results || data.results.length === 0) {
+                resultsEl.innerHTML = `<p class="muted">No results found.</p>`;
+                return;
+            }
+
+            const list = document.createElement('ul');
+            list.className = 'result-list';
+            for (const item of data.results) {
+                const li = document.createElement('li');
+               
+                li.textContent = item.name;
+                list.appendChild(li);
+            }
+            resultsEl.innerHTML = '';
+            resultsEl.appendChild(list);
+        });
+    </script>
+</body>
+
+</html>

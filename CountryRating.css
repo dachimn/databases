@@ -1,0 +1,180 @@
+:root {
+    --bg: #f6f7fb;
+    --card: #ffffff;
+    --text: #1c1f23;
+    --muted: #6b7280;
+    --primary: #2563eb;
+    --primary-600: #1e40af;
+    --success-bg: #ecfdf5;
+    --success-text: #065f46;
+    --error-bg: #fef2f2;
+    --error-text: #7f1d1d;
+    --border: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.wrap {
+    max-width: 560px;
+    margin: 8vh auto;
+    padding: 0 16px;
+    text-align: center;
+}
+
+h1 {
+    margin: 0 0 6px 0;
+    font-size: 28px;
+}
+
+.sub {
+    margin: 0 0 24px 0;
+    color: var(--muted);
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 18px;
+    text-align: left;
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+}
+
+.field {
+    margin-bottom: 14px;
+}
+
+label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 6px;
+    color: var(--muted);
+}
+
+input[type="text"],
+textarea {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px 12px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: #fff;
+    outline: none;
+}
+
+input:focus,
+textarea:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+textarea {
+    resize: vertical;
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    background: var(--primary);
+    color: #fff;
+    font-size: 16px;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background .15s ease-in-out, transform .02s;
+}
+
+.btn:hover {
+    background: var(--primary-600);
+}
+
+.btn:active {
+    transform: translateY(1px);
+}
+
+.alert {
+    border-radius: 10px;
+    padding: 10px 12px;
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.alert-success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border: 1px solid #a7f3d0;
+}
+
+.alert-error {
+    background: var(--error-bg);
+    color: var(--error-text);
+    border: 1px solid #fecaca;
+}
+
+.foot {
+    margin-top: 16px;
+    color: var(--muted);
+}
+
+/* Latest reviews section */
+.reviews {
+    margin-top: 20px;
+    text-align: left;
+}
+
+.reviews h2 {
+    margin: 12px 0;
+    font-size: 20px;
+}
+
+.review-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.review-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+}
+
+.review-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.country-pill {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 999px;
+    background: #eef2ff;
+    color: #1e3a8a;
+    font-size: 13px;
+    border: 1px solid #dbeafe;
+}
+
+.byline {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+.review-text {
+    margin: 0;
+    line-height: 1.5;
+}
