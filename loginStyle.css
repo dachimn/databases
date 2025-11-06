@@ -1,0 +1,109 @@
+:root {
+    --bg: #f8fafc;
+    --card: #ffffff;
+    --text: #111827;
+    --muted: #6b7280;
+    --ring: #3b82f6;
+    --border: #e5e7eb;
+    --danger: #ef4444;
+    --danger-bg: #fee2e2;
+    --danger-border: #fecaca;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, 'Apple Color Emoji', 'Segoe UI Emoji';
+    background: var(--bg);
+    color: var(--text);
+}
+
+.container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 16px 48px;
+}
+
+.title {
+    margin: 48px 0 4px;
+    font-size: 28px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.subtitle {
+    margin: 0 0 16px;
+    color: var(--muted);
+    text-align: center;
+}
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .04);
+    padding: 24px;
+}
+
+.form .field {
+    margin-bottom: 14px;
+}
+
+.form label {
+    display: block;
+    font-size: 14px;
+    color: #374151;
+    margin-bottom: 6px;
+}
+
+.form input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    outline: none;
+    transition: box-shadow .15s, border-color .15s;
+    font-size: 16px;
+}
+
+.form input:focus {
+    border-color: var(--ring);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, .15);
+}
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--ring);
+    color: white;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.button:hover {
+    filter: brightness(0.95);
+}
+
+.alert {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    border: 1px solid var(--danger-border);
+    background: var(--danger-bg);
+    color: #991b1b;
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 16px;
+}
