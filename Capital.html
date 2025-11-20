@@ -8,23 +8,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Country Capital Search</title>
     <link rel="stylesheet" href="CapitalStyle.css" />
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
 </head>
 
 <body>
     <div class="container">
         <h1>Search for a capital city of a Country</h1>
 
-        <!-- Target the hidden iframe so the main page doesn't reload -->
         <form id="search-form" class="search-box" action="search.php" method="post" target="resultFrame"
             autocomplete="off">
-            <input type="text" placeholder="Type a Country..." name="query" required />
+            <input id="country-input" type="text" name="query" placeholder="Type a Country..." required />
             <button type="submit">Search</button>
         </form>
 
         <div id="results" aria-live="polite"></div>
     </div>
 
-   
     <iframe name="resultFrame" id="resultFrame" style="display:none;" aria-hidden="true"></iframe>
 
     <script>
@@ -35,33 +37,65 @@
             resultsEl.innerHTML = '<div class="loading">Searching…</div>';
         });
 
-       
         window.addEventListener('message', (event) => {
-
             const data = event.data;
             if (!data || typeof data !== 'object') return;
 
             if (!data.ok) {
-                resultsEl.innerHTML = `<div class="error">${data.message || 'Something went wrong.'}</div>`;
+                resultsEl.innerHTML =
+                    `<div class="error">${data.message || 'Something went wrong.'}</div>`;
                 return;
             }
 
-            // Render results
             if (!data.results || data.results.length === 0) {
-                resultsEl.innerHTML = `<p class="muted">No results found.</p>`;
+                resultsEl.innerHTML = '<p class="muted">No results found.</p>';
                 return;
             }
 
             const list = document.createElement('ul');
             list.className = 'result-list';
+
             for (const item of data.results) {
                 const li = document.createElement('li');
-               
                 li.textContent = item.name;
                 list.appendChild(li);
             }
+
             resultsEl.innerHTML = '';
             resultsEl.appendChild(list);
+        });
+
+        $(function () {
+            $('#country-input').autocomplete({
+                minLength: 1,
+
+                source: function (request, response) {
+                    $.ajax({
+                        url: 'search.php',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            term: request.term, 
+                            ajax: 1             
+                        },
+                        success: function (data) {
+                            if (!data || !data.ok || !Array.isArray(data.results)) {
+                                response([]);
+                                return;
+                            }
+
+                            response(
+                                data.results.map(function (item) {
+                                    return item.name;
+                                })
+                            );
+                        },
+                        error: function () {
+                            response([]);
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>

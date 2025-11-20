@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery Autocomplete Demo</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/smoothness/jquery-ui.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        .wrapper {
+            width: 300px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Car Brand Autocomplete Demo</h2>
+
+    <div class="wrapper">
+        <label for="car-brand">Car Brand:</label>
+        <input id="car-brand" type="text" placeholder="Start typing...">
+    </div>
+
+    <script>
+        $(function () {
+            const carBrands = [
+                "Audi", "BMW", "Bentley", "Bugatti", "Chevrolet",
+                "Dodge", "Ferrari", "Ford", "Honda", "Hyundai",
+                "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover",
+                "Lexus", "Maserati", "Mazda", "Mercedes-Benz",
+                "Mitsubishi", "Nissan", "Porsche", "Subaru",
+                "Tesla", "Toyota", "Volkswagen", "Volvo"
+            ];
+
+            $("#car-brand").autocomplete({
+                source: carBrands,
+                minLength: 1
+            });
+        });
+    </script>
+
+</body>
+</html>
